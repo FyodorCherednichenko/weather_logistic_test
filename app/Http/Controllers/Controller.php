@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\ProcessRequestAction;
+use App\Actions\ProcessScheduleAction;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -19,4 +20,19 @@ class Controller extends BaseController
     {
         return response()->json($action->execute($request));
     }
+
+    /**
+     * @throws ValidationException
+     */
+    public function schedule(string $date, string $time, string $direction, ProcessScheduleAction $action): JsonResponse
+    {
+        return response()->json($action->execute(
+                [
+                    'date'      => $date,
+                    'time'      => $time,
+                    'direction' => $direction
+                ]
+        ));
+    }
+
 }

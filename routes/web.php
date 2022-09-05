@@ -23,3 +23,8 @@ $router->post('/city-weather', [
     'as' => 'city-weather',
     'uses' => 'Controller@cityWeather'
 ]);
+
+$router->get('/schedule/{date}/{time}/{direction}', [
+    'as' => 'schedule',
+    'uses' => 'Controller@schedule'
+]);
